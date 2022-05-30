@@ -1,0 +1,24 @@
+{
+  "name": "farm-fill",
+  "version": "1.0.0",
+  "description": "Tool to calculate planting using best practices.",
+  "main": "index.js",
+  "scripts": {
+    "watch:tsc": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engelbytes-waterbyte/farm-fill.git"
+  },
+  "keywords": [
+    "Plants",
+    "Pflonzn",
+    "Esoterik"
+  ],
+  "author": "Engelbyte Waterbyte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engelbytes-waterbyte/farm-fill/issues"
+  },
+  "homepage": "https://github.com/engelbytes-waterbyte/farm-fill#readme"
+}
