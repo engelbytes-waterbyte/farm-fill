@@ -4,7 +4,8 @@
   "description": "Tool to calculate planting using best practices.",
   "main": "index.js",
   "scripts": {
-    "watch:tsc": "tsc --watch"
+    "watch": "tsc -w",
+    "dev": "nodemon --exec ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/engelbytes-waterbyte/farm-fill/issues"
   },
-  "homepage": "https://github.com/engelbytes-waterbyte/farm-fill#readme"
+  "homepage": "https://github.com/engelbytes-waterbyte/farm-fill#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.0"
+  },
+  "dependencies": {
+    "sqlite3": "^5.0.8",
+    "typeorm": "^0.3.6"
+  }
 }
