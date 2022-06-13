@@ -17,6 +17,6 @@ farmfill [...]
 If you want to customize your output, you can enter the following optional parameters. 
 | Parameters | Description |
 | -----------|-------------|
-| -years [X] | Create a seeding plan for X years |
-| -plans [X] | Create X different seeding plans for the same year |
-| -benchmark | Show performance data |
+| `-y \| --years [X]` | Create a seeding plan for X years |
+| `-p \| --plans [X]` | Create X different seeding plans for the same year |
+| `-b \| --benchmark` | Show performance data |
