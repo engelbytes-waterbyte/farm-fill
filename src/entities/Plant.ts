@@ -1,9 +1,9 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
 import {ResourceUsage} from "./ResourceUsage";
 
 @Entity()
-export class Plant {
+export class Plant extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -22,7 +22,7 @@ export class Plant {
 
     // Wos ma guad danoch pflonzn konn
     @Column()
-    goodSuccessor: Plant;
+    goodSuccessor: Plant[];
 
     @Column()
     goodNeighbors: Plant[];
