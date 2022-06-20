@@ -3,18 +3,20 @@ import yargs from "yargs";
 
 yargs
     .scriptName('clitool4Farmfill')
-    .usage("$0 run [args]")
+    .usage("$0 run [options]")
     .command('run [options]', 'Run the script', (_) => {
     }, (argv) => {
-        if(argv.benchmark) {
-            console.log('Benchmark')
-        }
+        const startTime = +Date.now();
+
         if(argv.plans) {
             console.log(`plans ${argv.plans}`)
         }
         if(argv.years) {
             console.log(`years ${argv.years}`)
         }
+
+        if(argv.benchmark)
+            console.log('[BENCHMARK] It took ' + (+Date.now() - startTime) + 'ms to calculate those seeding plans.');
     })
     .option('benchmark', {
         alias: 'b',
