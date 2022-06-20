@@ -18,23 +18,17 @@ export class Plant extends BaseEntity {
     widthRequired: number;
 
     // Noch wos ma des guad pflonzn konn
-    // Welsch hod gmoant wir soin nur Nachfolger mochn
-    @ManyToMany(() => Plant)
-    @JoinTable()
+    @Column()
     goodPredecessor: Plant[];
 
     // Wos ma guad danoch pflonzn konn
-    // anscheinend haud des so irgendwie hi sogt der 2. hansl https://stackoverflow.com/questions/43747765/self-referencing-manytomany-relationship-typeorm
-    @ManyToMany(() => Plant)
-    @JoinTable()
+    @Column()
     goodSuccessor: Plant[];
 
-    @ManyToMany(() => Plant)
-    @JoinTable()
+    @Column()
     goodNeighbors: Plant[];
 
-    @ManyToMany(() => Plant)
-    @JoinTable()
+    @Column()
     badNeighbors: Plant[];
 
     @OneToMany(() => ResourceUsage, (res) => res.plants)
