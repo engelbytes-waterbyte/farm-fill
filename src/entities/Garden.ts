@@ -1,8 +1,8 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
 
 @Entity()
-export class Garden {
+export class Garden extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 

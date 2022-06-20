@@ -1,9 +1,10 @@
-import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
 import {ResourceUsage} from "./ResourceUsage";
+//import {JoinTable} from "typeorm/browser";
 
 @Entity()
-export class Plant extends BaseEntity{
+export class Plant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -18,7 +19,7 @@ export class Plant extends BaseEntity{
 
     // Noch wos ma des guad pflonzn konn
     @Column()
-    goodPredecessor: Plant;
+    goodPredecessor: Plant[];
 
     // Wos ma guad danoch pflonzn konn
     @Column()
