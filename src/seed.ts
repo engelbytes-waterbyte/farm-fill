@@ -1,12 +1,17 @@
 import {Field} from "./entities/Field";
 import {Plant} from "./entities/Plant";
 import {ResourceUsage, ResourceUsageType} from "./entities/ResourceUsage";
+import { DataSource } from "typeorm";
+import { Garden } from "@entities/Garden";
 
-export default async function seedDb() {
-    const field = new Field();
-    field.rows = 10;
-    field.columns = 10;
-    await field.save();
+export default async function seedDb(dbContext: DataSource) {
+  //bitte imma olles auslan, bevor ma wos eine duan
+  clearDatabase(dbContext);
+
+  const field = new Field();
+  field.rows = 10;
+  field.columns = 10;
+  await field.save();
 
     const field2 = new Field();
     field2.rows = 10;
@@ -118,4 +123,9 @@ export default async function seedDb() {
     await salad.save();
     await radish.save();
     await kohlrabi.save();
+}
+
+function clearDatabase(db: DataSource) {
+  db.getRepository(Field).clear();
+  db.getRepository(Garden).clear();
 }
