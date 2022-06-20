@@ -1,14 +1,13 @@
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
 import {ResourceUsage} from "./ResourceUsage";
-//import {JoinTable} from "typeorm/browser";
 
 @Entity()
 export class Plant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Field, (field) => field.plant)
+    @OneToMany(() => Field, (field) => field.plant)
     fields: Field[];
 
     @Column()
@@ -31,6 +30,6 @@ export class Plant extends BaseEntity {
     @Column()
     badNeighbors: Plant[];
 
-    @OneToMany(() => ResourceUsage, (res) => res.plants)
+    @ManyToOne(() => ResourceUsage, (res) => res.plants)
     resourceUsage: ResourceUsage;
 }

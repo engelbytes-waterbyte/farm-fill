@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Plant} from "./Plant";
 
 export enum ResourceUsageType {
@@ -21,6 +21,6 @@ export class ResourceUsage {
     @Column({type: 'simple-enum', enum: ResourceUsageType})
     resourceUsageType: number;
 
-    @ManyToOne(() => Plant, (plant) => plant.resourceUsage)
+    @OneToMany(() => Plant, (plant) => plant.resourceUsage)
     plants: Plant[];
 }

@@ -2,6 +2,7 @@ import { Field } from "@entities/Field";
 import { Garden } from "@entities/Garden";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "./data-source";
+import generateGardenFromRawGarden2dArray from "./logic";
 import generatePlan from "./logic";
 import seedDb from "./seed";
 
@@ -12,18 +13,15 @@ const main = async (): Promise<DataSource> => {
   seedDb(app);
 
   //garden can only be as long as wide
-  const garden2dArray = [
+  const rawGarden2dArray:number[][] = [
     [0, 0, 0, -1, -1],
     [0, 0, 0, -1, -1],
     [0, 0, 0, -1, -1],
     [0, 0, 0, -1, -1],
     [0, 0, 0, -1, -1],
   ];
-  const garden = new Garden();
-  garden.size = garden2dArray.length;
+  generateGardenFromRawGarden2dArray(app, rawGarden2dArray);
 
-  generatePlan(app, garden);
-  
   return app;
 };
 

@@ -1,15 +1,11 @@
 import {DataSource} from "typeorm";
-import {Field} from "./entities/Field";
-import {Garden} from "./entities/Garden";
-import {Plant} from "./entities/Plant";
-import {ResourceUsage} from "./entities/ResourceUsage";
 
 export const AppDataSource = new DataSource({
     type: "sqlite",
     database: "database.sqlite",
     synchronize: true,
     logging: false,
-    entities: [Field, Garden, Plant, ResourceUsage],
+    entities: ["src/entities/*.ts"],
     subscribers: [],
     migrations: [],
     // const conn = await createConnection({
