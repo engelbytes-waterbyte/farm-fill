@@ -1,4 +1,4 @@
-import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Garden} from "./Garden";
 import {Plant} from "./Plant";
 
@@ -8,14 +8,14 @@ export class Field extends BaseEntity {
     id: number;
 
     @Column()
-    rows: number;
+    rowInGarden: number;
 
     @Column()
-    columns: number;
+    columnInGarden: number;
 
     @ManyToOne(() => Garden, (garden) => garden.fields)
     garden: Garden;
 
-    @OneToMany(() => Plant, (plant) => plant.fields)
+    @ManyToOne(() => Plant, (plant) => plant.fields)
     plant: Plant;
 }
