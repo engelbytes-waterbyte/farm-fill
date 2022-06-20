@@ -1,9 +1,10 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
 import {ResourceUsage} from "./ResourceUsage";
+//import {JoinTable} from "typeorm/browser";
 
 @Entity()
-export class Plant {
+export class Plant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -17,17 +18,23 @@ export class Plant {
     widthRequired: number;
 
     // Noch wos ma des guad pflonzn konn
-    @Column()
-    goodPredecessor: Plant;
+    // Welsch hod gmoant wir soin nur Nachfolger mochn
+    @ManyToMany(() => Plant)
+    @JoinTable()
+    goodPredecessor: Plant[];
 
     // Wos ma guad danoch pflonzn konn
-    @Column()
-    goodSuccessor: Plant;
+    // anscheinend haud des so irgendwie hi sogt der 2. hansl https://stackoverflow.com/questions/43747765/self-referencing-manytomany-relationship-typeorm
+    @ManyToMany(() => Plant)
+    @JoinTable()
+    goodSuccessor: Plant[];
 
-    @Column()
+    @ManyToMany(() => Plant)
+    @JoinTable()
     goodNeighbors: Plant[];
 
-    @Column()
+    @ManyToMany(() => Plant)
+    @JoinTable()
     badNeighbors: Plant[];
 
     @OneToMany(() => ResourceUsage, (res) => res.plants)
