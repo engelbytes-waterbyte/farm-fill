@@ -1,62 +1,62 @@
-import { Field } from "./entities/Field";
-import { Plant } from "./entities/Plant";
-import { ResourceUsage, ResourceUsageType } from "./entities/ResourceUsage";
-import { DataSource } from "typeorm";
-import { Garden } from "@entities/Garden";
+import {Field} from "./entities/Field";
+import {Plant} from "./entities/Plant";
+import {ResourceUsageType} from "./entities/ResourceUsage";
+import {DataSource} from "typeorm";
+import {Garden} from "./entities/Garden";
 
 export default async function seedDb(dbContext: DataSource) {
   //bitte imma olles auslan, bevor ma wos eine duan
   clearDatabase(dbContext);
-
+  
   const pea = new Plant();
   pea.lengthRequired = 30;
   pea.widthRequired = 3;
-  pea.resourceUsage.resourceUsageType = ResourceUsageType.SCHWACHZEHRER;
+  pea.resourceUsage = ResourceUsageType.SCHWACHZEHRER;
 
   const cucumber = new Plant();
   cucumber.lengthRequired = 100;
   cucumber.widthRequired = 30;
-  cucumber.resourceUsage.resourceUsageType = ResourceUsageType.STARKZEHRER;
+  cucumber.resourceUsage = ResourceUsageType.STARKZEHRER;
 
   const potato = new Plant();
   potato.lengthRequired = 30;
   potato.widthRequired = 60;
-  potato.resourceUsage.resourceUsageType = ResourceUsageType.STARKZEHRER;
+  potato.resourceUsage = ResourceUsageType.STARKZEHRER;
 
   const tomato = new Plant();
   tomato.lengthRequired = 80;
   tomato.widthRequired = 80;
-  tomato.resourceUsage.resourceUsageType = ResourceUsageType.STARKZEHRER;
+  tomato.resourceUsage = ResourceUsageType.STARKZEHRER;
 
   const onion = new Plant();
   onion.lengthRequired = 30;
   onion.widthRequired = 10;
-  onion.resourceUsage.resourceUsageType = ResourceUsageType.MITTELZEHRER;
+  onion.resourceUsage = ResourceUsageType.MITTELZEHRER;
 
   const carrot = new Plant();
   carrot.lengthRequired = 35;
   carrot.widthRequired = 3;
-  carrot.resourceUsage.resourceUsageType = ResourceUsageType.MITTELZEHRER;
+  carrot.resourceUsage = ResourceUsageType.MITTELZEHRER;
 
   const zucchini = new Plant();
   zucchini.lengthRequired = 100;
   zucchini.widthRequired = 100;
-  zucchini.resourceUsage.resourceUsageType = ResourceUsageType.STARKZEHRER;
+  zucchini.resourceUsage = ResourceUsageType.STARKZEHRER;
 
   const salad = new Plant();
   salad.lengthRequired = 25;
   salad.widthRequired = 2;
-  salad.resourceUsage.resourceUsageType = ResourceUsageType.SCHWACHZEHRER;
+  salad.resourceUsage = ResourceUsageType.SCHWACHZEHRER;
 
   const radish = new Plant();
   radish.lengthRequired = 20;
   radish.widthRequired = 3;
-  radish.resourceUsage.resourceUsageType = ResourceUsageType.SCHWACHZEHRER;
+  radish.resourceUsage = ResourceUsageType.SCHWACHZEHRER;
 
   const kohlrabi = new Plant();
   kohlrabi.lengthRequired = 30;
   kohlrabi.widthRequired = 25;
-  kohlrabi.resourceUsage.resourceUsageType = ResourceUsageType.MITTELZEHRER;
+  kohlrabi.resourceUsage = ResourceUsageType.MITTELZEHRER;
 
   pea.goodSuccessor = [salad];
   pea.goodNeighbors = [cucumber, carrot, kohlrabi, salad, radish, zucchini];

@@ -1,12 +1,13 @@
-import {BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Field} from "./Field";
-import {ResourceUsage} from "./ResourceUsage";
+import {ResourceUsageType} from "./ResourceUsage";
 
 @Entity()
 export class Plant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column("simple-array")
     @OneToMany(() => Field, (field) => field.plant)
     fields: Field[];
 
@@ -17,19 +18,19 @@ export class Plant extends BaseEntity {
     widthRequired: number;
 
     // Noch wos ma des guad pflonzn konn
-    @Column()
+    @Column("simple-array")
     goodPredecessor: Plant[];
 
     // Wos ma guad danoch pflonzn konn
-    @Column()
+    @Column("simple-array")
     goodSuccessor: Plant[];
 
-    @Column()
+    @Column("simple-array")
     goodNeighbors: Plant[];
 
-    @Column()
+    @Column("simple-array")
     badNeighbors: Plant[];
 
-    @ManyToOne(() => ResourceUsage, (res) => res.plants)
-    resourceUsage: ResourceUsage;
+    @Column("simple-enum", {enum: ResourceUsageType})
+    resourceUsage: ResourceUsageType;
 }
