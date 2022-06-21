@@ -5,19 +5,18 @@ import seedDb from "./seed";
 
 const main = async (): Promise<DataSource> => {
   const app: DataSource = await AppDataSource.initialize();
-
   //pflonzn eineschnoitzn
   await seedDb(app);
 
-  // //garden can only be as long as wide
-  // const rawGarden2dArray:number[][] = [
-  //   [0, 0, 0, -1, -1],
-  //   [0, 0, 0, -1, -1],
-  //   [0, 0, 0, -1, -1],
-  //   [0, 0, 0, -1, -1],
-  //   [0, 0, 0, -1, -1],
-  // ];
-  // generateGardenFromRawGarden2dArray(app, rawGarden2dArray);
+  //garden can only be as long as wide
+  const rawGarden2dArray:number[][] = [
+    [0, 0, 0, -1, -1],
+    [0, 0, 0, -1, -1],
+    [0, 0, 0, -1, -1],
+    [0, 0, 0, -1, -1],
+    [0, 0, 0, -1, -1],
+  ];
+  generateGardenFromRawGarden2dArray(app, rawGarden2dArray);
 
   return app;
 };
