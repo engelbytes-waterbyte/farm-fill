@@ -9,6 +9,7 @@ export class Garden extends BaseEntity{
     @Column()
     size: number;
 
+    @Column("simple-array")
     @OneToMany(() => Field, (field) => field.garden)
     fields: Field[];
 }
