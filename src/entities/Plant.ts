@@ -6,15 +6,12 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Field } from "./Field";
+import { ResourceUsageType } from "./ResourceUsage";
 
 @Entity()
 export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
-  resourceUsage: number;
-  lengthRequired: any;
-  widthRequired: any;
-  badNeighbors: any;
 
   // @Column("simple-array")
   // @OneToMany(() => Field, (field) => field.plant)
@@ -40,6 +37,6 @@ export class Plant extends BaseEntity {
   // @Column("simple-array")
   // badNeighbors: Plant[];
 
-  // @Column("simple-enum", {enum: ResourceUsageType})
+  // @Column("simple-enum", { enum: ResourceUsageType })
   // resourceUsage: ResourceUsageType;
 }

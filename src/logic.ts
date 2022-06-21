@@ -1,14 +1,14 @@
-import { DataSource } from "typeorm";
 import { Garden } from "./entities/Garden";
 import { Plant } from "./entities/Plant";
 import { Field } from "./entities/Field";
+import { Connection } from "typeorm";
 
 export default async function generateGardenFromRawGarden2dArray(
-  dbContext: DataSource,
+  dbContext: Connection,
   rawGarden2dArray: number[][]
 ): Promise<void> {
   // make sure the input array is square
-  
+
   if (rawGarden2dArray.some((col) => col.length != rawGarden2dArray.length)) {
     return new Promise((resolve, reject) => reject());
   }
@@ -23,12 +23,14 @@ export default async function generateGardenFromRawGarden2dArray(
   for (let i = 0; i < rawGarden2dArray.length; i++) {
     for (let j = 0; j < rawGarden2dArray.length; j++) {
       var newField: Field = new Field();
-      newField;
+      newField.plant = new Plant();
       try {
         if (rawGarden2dArray[i][j] != -1) {
           var p = getSuitingPlant(dbContext);
         }
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+      }
       tempFields.push(newField);
     }
   }
@@ -37,14 +39,15 @@ export default async function generateGardenFromRawGarden2dArray(
 }
 
 //get suiting plant based on surrounding plants
-function getSuitingPlant(db: DataSource): Plant {
+function getSuitingPlant(db: Connection): Plant {
   return new Plant();
 }
 
 const weighPlant = (plant: Plant): number => {
-  return (
-    plant.resourceUsage +
-    (plant.lengthRequired + plant.widthRequired) / 10 +
-    plant.badNeighbors.length
-  );
+  // return (
+  //   plant.resourceUsage +
+  //   (plant.lengthRequired + plant.widthRequired) / 10 +
+  //   plant.badNeighbors.length
+  // );
+  return 1;
 };

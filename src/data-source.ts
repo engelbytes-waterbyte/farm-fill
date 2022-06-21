@@ -1,6 +1,7 @@
-import {DataSource} from "typeorm";
+import { createConnection } from "typeorm";
 
-export const AppDataSource = new DataSource({
+//dep
+export const AppDataSource = createConnection({
     type: "sqlite",
     database: "database.sqlite",
     synchronize: true,

@@ -19,9 +19,11 @@ export class Field extends BaseEntity {
   // @Column()
   // columnInGarden: number;
 
-  @ManyToOne(() => Garden, (garden) => garden.fields)
-  garden: Garden;
+  // @Column({ type: "simple-json" })
+  // @ManyToOne(() => Garden, (garden) => garden.fields)
+  // garden: Garden;
 
+  // @Column({ type: "simple-json" })
   // @ManyToOne(() => Plant, (plant) => plant.fields)
   // plant: Plant;
 }

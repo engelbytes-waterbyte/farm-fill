@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { Plant } from "./Plant";
 
-enum ResourceUsageType {
+export enum ResourceUsageType {
   SCHWACHZEHRER = 0,
   MITTELZEHRER = 1,
   STARKZEHRER = 2,
@@ -20,13 +20,13 @@ export class ResourceUsage {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
+  // @Column()
+  // name: string;
 
-  // Not 100% sure that this works - sqlite doesn't support enums, but according to https://github.com/typeorm/typeorm/issues/1414#issuecomment-487056609 this should do the trick
-  @Column({ type: "simple-enum", enum: ResourceUsageType })
-  resourceUsageType: number;
+  // // Not 100% sure that this works - sqlite doesn't support enums, but according to https://github.com/typeorm/typeorm/issues/1414#issuecomment-487056609 this should do the trick
+  // @Column({ type: "simple-enum", enum: ResourceUsageType })
+  // resourceUsageType: number;
 
-  @OneToMany(() => Plant, (plant) => plant.resourceUsage)
-  plants: Plant[];
+  // @OneToMany(() => Plant, (plant) => plant.resourceUsage)
+  // plants: Plant[];
 }
