@@ -1,15 +1,21 @@
-import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Field} from "./Field";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Field } from "./Field";
 
 @Entity()
-export class Garden extends BaseEntity{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Garden extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    size: number;
+  @Column()
+  size: number;
 
-    @Column("simple-array")
-    @OneToMany(() => Field, (field) => field.garden)
-    fields: Field[];
+  @Column({ type: "simple-json" })
+  @OneToMany(() => Field, (field) => field.garden)
+  fields: Field[];
 }
