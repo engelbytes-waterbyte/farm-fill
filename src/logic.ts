@@ -1,12 +1,30 @@
-import { DataSource } from "typeorm";
 import { Garden } from "./entities/Garden";
 import { Plant } from "./entities/Plant";
 import { Field } from "./entities/Field";
+import { Connection } from "typeorm";
+
+export async function generateGardenForYears(
+  dbContext: Connection,
+  rawGarden2dArray: number[][],
+  years: number
+): Promise<number[][][]> {
+  const plans: number[][][] = [[[]]];
+
+  for (let i = 0; i < years; i++) {
+    rawGarden2dArray = await generateGardenFromRawGarden2dArray(
+      dbContext,
+      rawGarden2dArray
+    );
+    plans.push(rawGarden2dArray);
+  }
+
+  return plans;
+}
 
 export default async function generateGardenFromRawGarden2dArray(
-  dbContext: DataSource,
+  dbContext: Connection,
   rawGarden2dArray: number[][]
-): Promise<void> {
+): Promise<number[][]> {
   // make sure the input array is square
   if (rawGarden2dArray.some((col) => col.length != rawGarden2dArray.length)) {
     return new Promise((resolve, reject) => reject());
@@ -62,13 +80,14 @@ export default async function generateGardenFromRawGarden2dArray(
   }
 
   await garden.save();
+  return rawGarden2dArray;
 }
 
 // Fill field with suiting plant based on surrounding plants
 async function plantSuitingPlant(
   field: Field,
   gardenArray: number[][],
-  db: DataSource
+  db: Connection
 ): Promise<Plant> {
   // Get directly adjacent neighbors (top, right, bottom, left)
   const neighbors: Plant[] = [];
@@ -140,7 +159,7 @@ const getPlantAt = async (
   gardenArray: number[][],
   row: number,
   col: number,
-  db: DataSource
+  db: Connection
 ): Promise<Plant | null> => {
   // Check that the indezes aren't out of bounds
   if (row + col > gardenArray.length * 2) return null;
@@ -148,7 +167,7 @@ const getPlantAt = async (
   const neighborId = gardenArray[row][col];
   if (neighborId <= 0) return null;
 
-  return await db.manager.findOneBy(Plant, { id: neighborId });
+  return await db.manager.findOne(Plant, { id: neighborId });
 };
 
 const weighPlant = (plant: Plant): number => {
