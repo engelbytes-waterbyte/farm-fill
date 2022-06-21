@@ -1,3 +1,6 @@
+import { Field } from "@entities/Field";
+import { Garden } from "@entities/Garden";
+import { Plant } from "@entities/Plant";
 import { createConnection } from "typeorm";
 import generateGardenFromRawGarden2dArray from "./logic";
 import seedDb from "./seed";
@@ -8,7 +11,7 @@ const main = async (): Promise<any> => {
     database: "database.sqlite",
     synchronize: true,
     logging: false,
-    entities: ["src/entities/*.ts"],
+    entities: [Garden, Field, Plant],
     subscribers: [],
     migrations: [],
     // const conn = await createConnection({
@@ -20,7 +23,7 @@ const main = async (): Promise<any> => {
     //   // entities: [Field],
     // });
   });
-  
+
   //pflonzn eineschnoitzn
   await seedDb(app);
 
