@@ -3,10 +3,26 @@ import {Garden} from "./entities/Garden";
 import {Plant} from "./entities/Plant";
 import {Field} from "./entities/Field";
 
+export async function generateGardenForYears(
+    dbContext: DataSource,
+    rawGarden2dArray: number[][],
+    years: number
+): Promise<number[][][]> {
+
+  const plans: number[][][] = [[[]]];
+
+  for (let i = 0; i < years; i++) {
+    rawGarden2dArray = await generateGardenFromRawGarden2dArray(dbContext, rawGarden2dArray);
+    plans.push(rawGarden2dArray);
+  }
+
+  return plans;
+}
+
 export default async function generateGardenFromRawGarden2dArray(
     dbContext: DataSource,
     rawGarden2dArray: number[][]
-): Promise<void> {
+): Promise<number[][]> {
 
     // make sure the input array is square
     if (rawGarden2dArray.some(col => col.length != rawGarden2dArray.length)) {
@@ -61,6 +77,7 @@ export default async function generateGardenFromRawGarden2dArray(
     }
 
     await garden.save();
+    return rawGarden2dArray;
 }
 
 // Fill field with suiting plant based on surrounding plants
