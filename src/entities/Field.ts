@@ -16,6 +16,9 @@ export class Field extends BaseEntity {
     @ManyToOne(() => Garden, (garden) => garden.fields)
     garden: Garden;
 
+    @Column({type: "simple-array", nullable: true})
+    previousPlants: Plant[] | null;
+
     @ManyToOne(() => Plant, (plant) => plant.fields)
     plant: Plant;
 }
