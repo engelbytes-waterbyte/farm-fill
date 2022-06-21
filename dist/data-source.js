@@ -2,13 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
-const Field_1 = require("./entities/Field");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "sqlite",
     database: "database.sqlite",
     synchronize: true,
     logging: false,
-    entities: [Field_1.Field],
+    entities: ["src/entities/*.ts"],
     subscribers: [],
     migrations: [],
     // const conn = await createConnection({

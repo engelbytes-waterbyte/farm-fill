@@ -5,7 +5,7 @@
   "bin": {
     "clitool4Farmfill": "dist/index.js"
   },
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "watch": "tsc -w",
     "dev": "nodemon --exec ts-node src/index.ts"
@@ -28,7 +28,8 @@
   "devDependencies": {
     "@types/yargs": "^17.0.10",
     "nodemon": "^2.0.16",
-    "ts-node": "^10.8.0"
+    "ts-node": "^10.8.0",
+    "tsconfig-paths": "^4.0.0"
   },
   "dependencies": {
     "sqlite3": "^5.0.8",

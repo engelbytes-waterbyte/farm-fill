@@ -1,8 +1,8 @@
-import { Field } from "./entities/Field";
-import { Plant } from "./entities/Plant";
+import { Field } from "@entities/Field";
+import { Plant } from "@entities/Plant";
+import { Garden } from "@entities/Garden";
 import { ResourceUsage, ResourceUsageType } from "./entities/ResourceUsage";
 import { DataSource } from "typeorm";
-import { Garden } from "@entities/Garden";
 
 export default async function seedDb(dbContext: DataSource) {
   //bitte imma olles auslan, bevor ma wos eine duan

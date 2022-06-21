@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Field = void 0;
 const typeorm_1 = require("typeorm");
+const Garden_1 = require("./Garden");
+const Plant_1 = require("./Plant");
 let Field = class Field extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -20,7 +22,19 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Field.prototype, "size", void 0);
+], Field.prototype, "rowInGarden", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Field.prototype, "columnInGarden", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Garden_1.Garden, (garden) => garden.fields),
+    __metadata("design:type", Garden_1.Garden)
+], Field.prototype, "garden", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Plant_1.Plant, (plant) => plant.fields),
+    __metadata("design:type", Plant_1.Plant)
+], Field.prototype, "plant", void 0);
 Field = __decorate([
     (0, typeorm_1.Entity)()
 ], Field);
