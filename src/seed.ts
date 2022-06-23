@@ -4,7 +4,7 @@ import { Garden } from "./entities/Garden";
 import { Plant } from "./entities/Plant";
 
 export default async function seedDb(dbContext: Connection) {
-  // clearDatabase(dbContext);
+  clearDatabase(dbContext);
   // const pea = new Plant();
   // pea.lengthRequired = 30;
   // pea.widthRequired = 3;
@@ -88,6 +88,6 @@ export default async function seedDb(dbContext: Connection) {
 }
 
 function clearDatabase(db: Connection) {
-  // db.getRepository(Field).clear();
-  // db.getRepository(Garden).clear();
+  db.getRepository(Field).clear();
+  db.getRepository(Garden).clear();
 }

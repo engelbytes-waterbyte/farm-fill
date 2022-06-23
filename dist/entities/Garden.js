@@ -13,6 +13,9 @@ exports.Garden = void 0;
 const typeorm_1 = require("typeorm");
 const Field_1 = require("./Field");
 let Garden = class Garden extends typeorm_1.BaseEntity {
+    id;
+    size;
+    fields;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -23,6 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Garden.prototype, "size", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "simple-json" }),
     (0, typeorm_1.OneToMany)(() => Field_1.Field, (field) => field.garden),
     __metadata("design:type", Array)
 ], Garden.prototype, "fields", void 0);

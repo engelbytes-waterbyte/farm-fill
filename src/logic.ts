@@ -27,7 +27,7 @@ export default async function generateGardenFromRawGarden2dArray(
 ): Promise<number[][]> {
   // make sure the input array is square
   if (rawGarden2dArray.some((col) => col.length != rawGarden2dArray.length)) {
-    return new Promise((resolve, reject) => reject());
+    return new Promise((_, reject) => reject());
   }
 
   const garden = new Garden();
@@ -36,6 +36,8 @@ export default async function generateGardenFromRawGarden2dArray(
   // Plants sorted descending by difficulty
   let plantsWeighted: Plant[] = await dbContext.manager.find(Plant);
   plantsWeighted.sort((p1, p2) => weighPlant(p1) - weighPlant(p2));
+
+  console.log(plantsWeighted);
 
   // Find first valid Field (= array cell that contains 0)
   let firstFreeRow: number, firstFreeCol: number;

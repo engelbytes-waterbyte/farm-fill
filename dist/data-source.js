@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
-exports.AppDataSource = new typeorm_1.DataSource({
+exports.AppDataSource = (0, typeorm_1.createConnection)({
     type: "sqlite",
     database: "database.sqlite",
     synchronize: true,
@@ -19,3 +19,14 @@ exports.AppDataSource = new typeorm_1.DataSource({
     //   // entities: [Field],
     // });
 });
+// export const AppDataSourcePsql = createConnection({
+//   type: "postgres",
+//   host: "localhost",
+//   synchronize: true,
+//   port: 5432,
+//   username: "postgres",
+//   password: "postgres",
+//   database: "farmfilldb",
+//   logging: false,
+//   entities: ["src/entities/*.ts"],
+// });

@@ -18,15 +18,15 @@ export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("simple-array")
-  @OneToMany(() => Field, (field) => field.plant)
-  fields: Field[];
-
   @Column()
   lengthRequired: number;
 
   @Column()
   widthRequired: number;
+
+  @Column("simple-array")
+  @OneToMany(() => Field, (field) => field.plant)
+  fields?: Field[];
 
   // Noch wos ma des guad pflonzn konn
   @Column("simple-array")

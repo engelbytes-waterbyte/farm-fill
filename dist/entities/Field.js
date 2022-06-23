@@ -14,6 +14,12 @@ const typeorm_1 = require("typeorm");
 const Garden_1 = require("./Garden");
 const Plant_1 = require("./Plant");
 let Field = class Field extends typeorm_1.BaseEntity {
+    id;
+    rowInGarden;
+    columnInGarden;
+    garden;
+    previousPlants;
+    plant;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -28,9 +34,14 @@ __decorate([
     __metadata("design:type", Number)
 ], Field.prototype, "columnInGarden", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "simple-json" }),
     (0, typeorm_1.ManyToOne)(() => Garden_1.Garden, (garden) => garden.fields),
     __metadata("design:type", Garden_1.Garden)
 ], Field.prototype, "garden", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "simple-array", nullable: true }),
+    __metadata("design:type", Array)
+], Field.prototype, "previousPlants", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Plant_1.Plant, (plant) => plant.fields),
     __metadata("design:type", Plant_1.Plant)
