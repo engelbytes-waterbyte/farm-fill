@@ -14,12 +14,6 @@ const typeorm_1 = require("typeorm");
 const Garden_1 = require("./Garden");
 const Plant_1 = require("./Plant");
 let Field = class Field extends typeorm_1.BaseEntity {
-    id;
-    rowInGarden;
-    columnInGarden;
-    garden;
-    previousPlants;
-    plant;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),

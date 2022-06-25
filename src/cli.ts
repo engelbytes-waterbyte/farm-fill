@@ -4,9 +4,9 @@ import generateGardenFromRawGarden2dArray, {
 } from "./logic";
 import seedDb from "./seed";
 import { createConnection } from "typeorm";
-import { Garden } from "@entities/Garden";
-import { Field } from "@entities/Field";
-import { Plant } from "@entities/Plant";
+import { Garden } from "@entities/Garden.entity";
+import { Field } from "@entities/Field.entity";
+import { Plant } from "@entities/Plant.entity";
 import * as fs from "fs";
 
 require("yargs")

@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Field } from "./Field";
+import { Field } from "./Field.entity";
 
 enum ResourceUsageType {
   SCHWACHZEHRER = 0,

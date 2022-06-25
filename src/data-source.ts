@@ -1,11 +1,12 @@
 import { createConnection } from "typeorm";
+import path from "path";
 
 export const AppDataSource = createConnection({
   type: "sqlite",
   database: "database.sqlite",
   synchronize: true,
   logging: false,
-  entities: ["src/entities/*.ts"],
+  entities: [path.join(__dirname, "**", "*.entity.{ts,js}")],
   subscribers: [],
   migrations: [],
   // const conn = await createConnection({

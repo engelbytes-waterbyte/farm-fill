@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
-import { Field } from "./entities/Field";
-import { Garden } from "./entities/Garden";
-import { Plant } from "./entities/Plant";
+import { Field } from "./entities/Field.entity";
+import { Garden } from "./entities/Garden.entity";
+import { Plant } from "./entities/Plant.entity";
 
 export default async function seedDb(dbContext: Connection) {
   clearDatabase(dbContext);

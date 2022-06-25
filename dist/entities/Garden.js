@@ -13,9 +13,6 @@ exports.Garden = void 0;
 const typeorm_1 = require("typeorm");
 const Field_1 = require("./Field");
 let Garden = class Garden extends typeorm_1.BaseEntity {
-    id;
-    size;
-    fields;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),

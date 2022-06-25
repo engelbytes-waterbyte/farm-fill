@@ -6,6 +6,7 @@
     "clitool4Farmfill": "dist/index.js"
   },
   "main": "./dist/index.js",
+
   "scripts": {
     "start": "tsc && node dist/index.js",
     "watch": "tsc -w",

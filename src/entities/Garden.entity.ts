@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Field } from "./Field";
+import { Field } from "./Field.entity";
 
 @Entity()
 export class Garden extends BaseEntity {
