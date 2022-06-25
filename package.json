@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "Tool to calculate planting using best practices.",
   "bin": {
-    "clitool4Farmfill": "dist/index.js"
+    "farmfill": "dist/cli.js"
   },
   "main": "./dist/index.js",
-
   "scripts": {
     "start": "tsc && node dist/index.js",
     "watch": "tsc -w",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "devCli": "tsc && farmfill"
   },
   "repository": {
     "type": "git",

@@ -13,10 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const data_source_1 = require("./data-source");
+const logic_1 = __importDefault(require("./logic"));
 const seed_1 = __importDefault(require("./seed"));
-const fs = require("fs");
+const fs_1 = __importDefault(require("fs"));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield fs.unlink("./database.sqlite", () => { });
+    yield fs_1.default.unlink("./database.sqlite", () => { });
     const app = yield data_source_1.AppDataSource;
     yield (0, seed_1.default)(app);
     //garden can only be as long as wide
@@ -27,7 +28,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         [0, 0, 0, -1, -1],
         [0, 0, 0, -1, -1],
     ];
-    // generateGardenFromRawGarden2dArray(app, rawGarden2dArray);
+    (0, logic_1.default)(app, rawGarden2dArray);
     return app;
 });
 main().catch((err) => {

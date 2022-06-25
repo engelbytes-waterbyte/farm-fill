@@ -19,13 +19,14 @@ export class Field extends BaseEntity {
   @Column()
   columnInGarden: number;
 
-  @Column({ type: "simple-json" })
+  @Column({ type: "simple-json", nullable: true })
   @ManyToOne(() => Garden, (garden) => garden.fields)
   garden: Garden;
 
   @Column({ type: "simple-array", nullable: true })
-  previousPlants: Plant[] | null;
+  previousPlants: Plant[];
 
+  @Column({ type: "simple-json", nullable: true })
   @ManyToOne(() => Plant, (plant) => plant.fields)
   plant: Plant;
 }

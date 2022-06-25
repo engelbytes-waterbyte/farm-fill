@@ -3,6 +3,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowJs": true,
+    "baseUrl": "src",
+    "paths": {
+      "@entities/*": ["entities/*"]
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "target": "es6",
     "module": "commonjs",
@@ -18,11 +22,7 @@
     // "strict": true /* Enable all strict type-checking options. */,
     // "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "src",
-    "paths": {
-      "@entities/*": ["entities/*"]
-    }
+    "allowSyntheticDefaultImports": true
   },
   "ts-node": {
     // Do not forget to `npm i -D tsconfig-paths`

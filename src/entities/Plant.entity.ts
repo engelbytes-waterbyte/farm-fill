@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { Field } from "./Field.entity";
 
-enum ResourceUsageType {
+export enum ResourceUsageType {
   SCHWACHZEHRER = 0,
   MITTELZEHRER = 1,
   STARKZEHRER = 2,
@@ -24,24 +24,24 @@ export class Plant extends BaseEntity {
   @Column()
   widthRequired: number;
 
-  @Column("simple-array")
+  @Column({ type: "simple-array", nullable: true })
   @OneToMany(() => Field, (field) => field.plant)
   fields?: Field[];
 
   // Noch wos ma des guad pflonzn konn
-  @Column("simple-array")
-  goodPredecessor: Plant[];
+  @Column({ type: "simple-array", nullable: true })
+  goodPredecessor: number[];
 
   // Wos ma guad danoch pflonzn konn
-  @Column("simple-array")
-  goodSuccessor: Plant[];
+  @Column({ type: "simple-array", nullable: true })
+  goodSuccessor: number[];
 
-  @Column("simple-array")
-  goodNeighbors: Plant[];
+  @Column({ type: "simple-array", nullable: true })
+  goodNeighbors: number[];
 
-  @Column("simple-array")
-  badNeighbors: Plant[];
+  @Column({ type: "simple-array", nullable: true })
+  badNeighbors: number[];
 
-  @Column("simple-enum", { enum: ResourceUsageType })
+  @Column({ type: "simple-enum", enum: ResourceUsageType })
   resourceUsage: ResourceUsageType;
 }

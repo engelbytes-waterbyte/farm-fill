@@ -15,7 +15,7 @@ export class Garden extends BaseEntity {
   @Column()
   size: number;
 
-  @Column({ type: "simple-json" })
+  @Column({ type: "simple-json", nullable: true })
   @OneToMany(() => Field, (field) => field.garden)
   fields: Field[];
 }

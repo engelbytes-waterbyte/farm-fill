@@ -37,8 +37,6 @@ export default async function generateGardenFromRawGarden2dArray(
   let plantsWeighted: Plant[] = await dbContext.manager.find(Plant);
   plantsWeighted.sort((p1, p2) => weighPlant(p1) - weighPlant(p2));
 
-  console.log(plantsWeighted);
-
   // Find first valid Field (= array cell that contains 0)
   let firstFreeRow: number, firstFreeCol: number;
   firstFreeRow = rawGarden2dArray.findIndex((row) => {
@@ -50,11 +48,12 @@ export default async function generateGardenFromRawGarden2dArray(
   // Create field for most difficult plant
   const mostDifficult: Field = new Field();
   mostDifficult.plant = plantsWeighted[0];
-  mostDifficult.garden = garden;
   mostDifficult.rowInGarden = firstFreeRow;
   mostDifficult.columnInGarden = firstFreeCol;
-  await mostDifficult.save();
-  rawGarden2dArray[firstFreeRow][firstFreeCol] = mostDifficult.plant.id;
+  await dbContext.getRepository(Field).save(mostDifficult)
+  // garden.fields.push(mostDifficult);
+  // await dbContext.getRepository(Garden).update(garden.id,garden)
+  // rawGarden2dArray[firstFreeRow][firstFreeCol] = mostDifficult.plant.id;
 
   for (let i = firstFreeRow; i < rawGarden2dArray.length; i++) {
     for (let j = 0; j < rawGarden2dArray.length; j++) {
@@ -130,7 +129,7 @@ async function plantSuitingPlant(
     }
 
     // Bad neighbors contain current plant
-    if (neighbors.some((n) => n.badNeighbors.some((bad) => bad == plant))) {
+    if (neighbors.some((n) => n.badNeighbors.some((bad) => bad == plant.id))) {
       possiblePlants = possiblePlants.filter((p) => p != plant);
     }
   });
@@ -138,7 +137,7 @@ async function plantSuitingPlant(
   // Find plants that are still plantable *and* are good neighbors
   let goodPlants = possiblePlants;
   possiblePlants.forEach((plant) => {
-    if (!neighbors.some((n) => n.goodNeighbors.some((good) => good == plant))) {
+    if (!neighbors.some((n) => n.goodNeighbors.some((good) => good == plant.id))) {
       goodPlants = goodPlants.filter((p) => p != plant);
     }
   });
@@ -147,7 +146,7 @@ async function plantSuitingPlant(
   else goodPlants = possiblePlants;
 
   possiblePlants.forEach((plant) => {
-    if (!neighbors.some((n) => n.goodSuccessor.some((good) => good == plant))) {
+    if (!neighbors.some((n) => n.goodSuccessor.some((good) => good == plant.id))) {
       goodPlants = goodPlants.filter((p) => p != plant);
     }
   });

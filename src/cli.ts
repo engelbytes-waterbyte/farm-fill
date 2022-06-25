@@ -1,15 +1,17 @@
 #!/usr/bin/env node
+
 import generateGardenFromRawGarden2dArray, {
   generateGardenForYears,
 } from "./logic";
 import seedDb from "./seed";
 import { createConnection } from "typeorm";
-import { Garden } from "@entities/Garden.entity";
-import { Field } from "@entities/Field.entity";
-import { Plant } from "@entities/Plant.entity";
+import { Garden } from "./entities/Garden.entity";
+import { Field } from "./entities/Field.entity";
+import { Plant } from "./entities/Plant.entity";
 import * as fs from "fs";
+import yargs from "yargs";
 
-require("yargs")
+yargs
   .scriptName("clitool4Farmfill")
   .usage("$0 run [options]")
   .command(
